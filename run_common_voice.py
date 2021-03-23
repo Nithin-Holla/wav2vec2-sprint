@@ -351,7 +351,7 @@ def main():
     vocab_dict["[UNK]"] = len(vocab_dict)
     vocab_dict["[PAD]"] = len(vocab_dict)
 
-    logger.info('Vocab dictionary: {}'.format(vocab_dict))
+    logger.info('Vocab: {}'.format(vocab_list))
 
     with open("vocab.json", "w") as vocab_file:
         json.dump(vocab_dict, vocab_file)
