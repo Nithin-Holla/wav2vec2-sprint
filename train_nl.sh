@@ -2,7 +2,7 @@
 python run_common_voice.py \
     --model_name_or_path="facebook/wav2vec2-large-xlsr-53" \
     --dataset_config_name="nl" \
-    --output_dir=/workspace/models/tr/wav2vec2-large-xlsr-dutch-demo \
+    --output_dir=/workspace/models/nl/wav2vec2-large-xlsr-dutch-demo \
     --overwrite_output_dir \
     --num_train_epochs="30" \
     --per_device_train_batch_size="32" \
@@ -14,7 +14,7 @@ python run_common_voice.py \
     --freeze_feature_extractor \
     --save_steps="400" \
     --eval_steps="400" \
-    --save_total_limit="2" \
+    --save_total_limit="1" \
     --logging_steps="100" \
     --group_by_length \
     --feat_proj_dropout="0.0" \
