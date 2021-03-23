@@ -134,7 +134,7 @@ class DataTrainingArguments:
         },
     )
     chars_to_ignore: List[str] = list_field(
-        default=[",", "?", ".", "!", "-", ";", ":", '""', "%", "'", '"', "�"],
+        default=[",", "?", ".", "!", "-", ";", ":", '""', "%", "'", '"', "�", "(", ")", "&", "–", "—", "—", "…", "´", "’"],
         metadata={"help": "A list of characters to remove from the transcripts."},
     )
 
@@ -310,6 +310,10 @@ def main():
     )
     eval_dataset = datasets.load_dataset("common_voice", data_args.dataset_config_name, split="test", cache_dir=model_args.cache_dir)
 
+    # Log data statistics
+    logger.info('Size of the training set: {}'.format(train_dataset.__len__()))
+    logger.info('Size of the evaluation set: {}'.format(eval_dataset.__len__()))
+
     # Create and save tokenizer
     chars_to_ignore_regex = f'[{"".join(data_args.chars_to_ignore)}]'
 
@@ -346,6 +350,8 @@ def main():
     del vocab_dict[" "]
     vocab_dict["[UNK]"] = len(vocab_dict)
     vocab_dict["[PAD]"] = len(vocab_dict)
+
+    logger.info('Vocab dictionary: {}'.format(vocab_dict))
 
     with open("vocab.json", "w") as vocab_file:
         json.dump(vocab_dict, vocab_file)
