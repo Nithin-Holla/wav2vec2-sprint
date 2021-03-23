@@ -20,4 +20,5 @@ python run_common_voice.py \
     --feat_proj_dropout="0.0" \
     --layerdrop="0.1" \
     --gradient_checkpointing \
-    --do_train --do_eval
+    --do_train --do_eval \
+    --preprocessing_num_workers="4"
