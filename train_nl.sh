@@ -14,7 +14,7 @@ python run_common_voice.py \
     --freeze_feature_extractor \
     --save_steps="400" \
     --eval_steps="400" \
-    --save_total_limit="1" \
+    --save_total_limit="2" \
     --logging_steps="100" \
     --group_by_length \
     --feat_proj_dropout="0.0" \
