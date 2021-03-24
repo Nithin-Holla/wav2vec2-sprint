@@ -382,6 +382,7 @@ def main():
         gradient_checkpointing=model_args.gradient_checkpointing,
         layerdrop=model_args.layerdrop,
         ctc_loss_reduction="mean",
+        ctc_zero_infinity=True,
         pad_token_id=processor.tokenizer.pad_token_id,
         vocab_size=len(processor.tokenizer),
     )
