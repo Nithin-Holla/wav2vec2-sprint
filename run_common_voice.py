@@ -134,8 +134,11 @@ class DataTrainingArguments:
         },
     )
     chars_to_ignore: List[str] = list_field(
-        default=[",", "?", ".", "!", "-", ";", ":", '""', "%", "'", '"', "�", "(", ")", "&", "–", "—", "—", "…", "´", "’"],
+        default=[",", "?", ".", "!", "-", ";", ":", '""', "%", '"', "�", "(", ")", "&", "–", "—", "=", "…"],
         metadata={"help": "A list of characters to remove from the transcripts."},
+    )
+    replace_apostrophes: bool = field(
+        default=True, metadata={"help": "Replaces other forms of apostrophe with a single kind, i.e., \' "}
     )
 
 
@@ -318,6 +321,9 @@ def main():
     chars_to_ignore_regex = f'[{"".join(data_args.chars_to_ignore)}]'
 
     def remove_special_characters(batch):
+        if data_args.replace_apostrophes:
+            apostrophes_regex = '[\´\’]'
+            batch["text"] = re.sub(apostrophes_regex, '\'', batch["sentence"])
         batch["text"] = re.sub(chars_to_ignore_regex, "", batch["sentence"]).lower() + " "
         return batch
 
