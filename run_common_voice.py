@@ -323,7 +323,7 @@ def main():
     def remove_special_characters(batch):
         if data_args.replace_apostrophes:
             apostrophes_regex = '[\´\’]'
-            batch["text"] = re.sub(apostrophes_regex, '\'', batch["sentence"])
+            batch["sentence"] = re.sub(apostrophes_regex, '\'', batch["sentence"])
         batch["text"] = re.sub(chars_to_ignore_regex, "", batch["sentence"]).lower() + " "
         return batch
 
