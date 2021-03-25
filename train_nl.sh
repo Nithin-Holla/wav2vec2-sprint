@@ -4,7 +4,7 @@ python run_common_voice.py \
     --dataset_config_name="nl" \
     --output_dir=/workspace/models/nl/wav2vec2-large-xlsr-dutch \
     --overwrite_output_dir \
-    --num_train_epochs="30" \
+    --num_train_epochs="40" \
     --per_device_train_batch_size="32" \
     --per_device_eval_batch_size="32" \
     --evaluation_strategy="steps" \
