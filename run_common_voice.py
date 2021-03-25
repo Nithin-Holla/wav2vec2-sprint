@@ -481,6 +481,10 @@ def main():
         tokenizer=processor.feature_extractor,
     )
 
+    # Save the feature_extractor and the tokenizer
+    if is_main_process(training_args.local_rank):
+        processor.save_pretrained(training_args.output_dir)
+
     # Training
     if training_args.do_train:
         if last_checkpoint is not None:
@@ -491,10 +495,6 @@ def main():
             checkpoint = None
         train_result = trainer.train(resume_from_checkpoint=checkpoint)
         trainer.save_model()
-
-        # save the feature_extractor and the tokenizer
-        if is_main_process(training_args.local_rank):
-            processor.save_pretrained(training_args.output_dir)
 
         metrics = train_result.metrics
         max_train_samples = (
