@@ -321,7 +321,7 @@ def main():
     chars_to_ignore_regex = f'[{"".join(data_args.chars_to_ignore)}]'
 
     def remove_special_characters(batch):
-        batch["text"] = re.sub(chars_to_ignore_regex, "", batch["sentence"]).lower().replace("´", "'") + " "
+        batch["text"] = re.sub(chars_to_ignore_regex, "", batch["sentence"]).lower().replace("´", "'").replace("’", "'") + " "
         return batch
 
     train_dataset = train_dataset.map(remove_special_characters, remove_columns=["sentence"])

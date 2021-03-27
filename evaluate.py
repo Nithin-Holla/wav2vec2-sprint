@@ -23,7 +23,7 @@ resampler = torchaudio.transforms.Resample(48_000, 16_000)
 
 def speech_file_to_array_fn(batch):
     batch["sentence"] = re.sub(
-        chars_to_ignore_regex, '', batch["sentence"]).lower().replace("´", "'")
+        chars_to_ignore_regex, '', batch["sentence"]).lower().replace("´", "'").replace("’", "'")
     speech_array, sampling_rate = torchaudio.load(batch["path"])
     batch["speech"] = resampler(speech_array).squeeze().numpy()
     return batch
