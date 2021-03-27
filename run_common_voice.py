@@ -321,10 +321,7 @@ def main():
     chars_to_ignore_regex = f'[{"".join(data_args.chars_to_ignore)}]'
 
     def remove_special_characters(batch):
-        batch["text"] = re.sub(chars_to_ignore_regex, "", batch["sentence"]).lower() + " "
-        if data_args.replace_apostrophes:
-            apostrophes_regex = '[´’]'
-            batch["text"] = re.sub(apostrophes_regex, "'", batch["text"])
+        batch["text"] = re.sub(chars_to_ignore_regex, "", batch["sentence"]).lower().replace("’", "'") + " "
         return batch
 
     train_dataset = train_dataset.map(remove_special_characters, remove_columns=["sentence"])
