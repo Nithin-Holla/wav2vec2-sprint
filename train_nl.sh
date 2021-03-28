@@ -4,7 +4,7 @@ python run_common_voice.py \
     --dataset_config_name="nl" \
     --output_dir=/workspace/models/nl/wav2vec2-large-xlsr-dutch \
     --overwrite_output_dir \
-    --num_train_epochs="40" \
+    --num_train_epochs="50" \
     --per_device_train_batch_size="32" \
     --per_device_eval_batch_size="32" \
     --evaluation_strategy="steps" \
@@ -14,7 +14,7 @@ python run_common_voice.py \
     --freeze_feature_extractor \
     --save_steps="1000" \
     --eval_steps="1000" \
-    --save_total_limit="4" \
+    --save_total_limit="5" \
     --logging_steps="1000" \
     --group_by_length \
     --feat_proj_dropout="0.0" \
