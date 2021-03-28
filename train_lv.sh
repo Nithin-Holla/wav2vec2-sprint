@@ -2,7 +2,7 @@
 python run_common_voice.py \
     --model_name_or_path="facebook/wav2vec2-large-xlsr-53" \
     --dataset_config_name="lv" \
-    --output_dir=/workspace/models/nl/wav2vec2-large-xlsr-latvian \
+    --output_dir=/workspace/models/lv/wav2vec2-large-xlsr-latvian \
     --overwrite_output_dir \
     --num_train_epochs="30" \
     --per_device_train_batch_size="32" \
